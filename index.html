@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+    }
+
+    #product-list {
+      list-style: none;
+      padding: 0;
+    }
+
+    .product {
+      display: flex;
+      justify-content: space-between;
+      padding: 10px;
+      border-bottom: 1px solid #ccc;
+    }
+
+    button {
+      cursor: pointer;
+    }
+  </style>
+  <title>Product Management</title>
+</head>
+<body>
+
+  <h1>Product Management</h1>
+
+  <form id="addProductForm">
+    <label for="productName">Product Name:</label>
+    <input type="text" id="productName" required>
+    <button type="button" onclick="addProduct()">Add Product</button>
+  </form>
+
+  <h2>Product List</h2>
+  <ul id="product-list"></ul>
+
+  <script>
+    function addProduct() {
+     
+      var productName = document.getElementById('productName').value;
+
+      if (productName.trim() === '') {
+        alert('Please enter a product name.');
+        return;
+      }
+
+    
+      var listItem = document.createElement('li');
+      listItem.className = 'product';
+
+    
+      var productNameSpan = document.createElement('span');
+      productNameSpan.textContent = productName;
+
+     
+      var deleteButton = document.createElement('button');
+      deleteButton.textContent = 'Delete';
+      deleteButton.onclick = function () {
+        listItem.remove();
+      };
+
+     
+      listItem.appendChild(productNameSpan);
+      listItem.appendChild(deleteButton);
+
+    
+      document.getElementById('product-list').appendChild(listItem);
+
+      
+      document.getElementById('productName').value = '';
+    }
+  </script>
+
+</body>
+</html>
